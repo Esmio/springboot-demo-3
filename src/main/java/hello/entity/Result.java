@@ -1,32 +1,18 @@
 package hello.entity;
 
-public class Result {
+public abstract class Result<T> {
 
     String status;
     String msg;
-    boolean isLogin;
-    Object data;
+    T data;
 
-    public static Result failure(String message) {
-        return new Result("fail", message, false);
+    protected Result(String status, String msg) {
+        this(status, msg, null);
     }
 
-    public static Result success(String message, boolean isLogin, Object data) {
-        return new Result("ok", message, isLogin, data);
-    }
-
-    public static Result success(String message, boolean isLogin) {
-        return new Result("ok", message, isLogin);
-    }
-
-    private Result(String status, String msg, boolean isLogin) {
-        this(status, msg, isLogin, null);
-    }
-
-    public Result(String status, String msg, boolean isLogin, Object data) {
+    protected Result(String status, String msg, T data) {
         this.status = status;
         this.msg = msg;
-        this.isLogin = isLogin;
         this.data = data;
     }
 
@@ -36,10 +22,6 @@ public class Result {
 
     public String getMsg() {
         return msg;
-    }
-
-    public boolean isLogin() {
-        return isLogin;
     }
 
     public Object getData() {

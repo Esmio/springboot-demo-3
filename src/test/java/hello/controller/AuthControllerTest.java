@@ -88,7 +88,7 @@ class AuthControllerTest {
         // 登录时，/auth 接口返回登录状态
         mvc.perform(get("/auth").session((MockHttpSession) session)).andExpect(status().isOk()).andExpect(result -> {
             System.out.println(result.getResponse().getContentAsString());
-            Assertions.assertTrue(result.getResponse().getContentAsString().contains("MyUser"));
+            Assertions.assertTrue(result.getResponse().getContentAsString().contains("success"));
         });
     }
 
